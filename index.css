@@ -1,0 +1,573 @@
+/* =========================
+   RESET + BASE
+========================= */
+:root{
+    /* Paleta vistosa tipo "forrajería" (verde/amarillo) pero elegante para arquitectura */
+    --bg-0:#070A0F;
+    --bg-1:#0B1220;
+    --bg-2:#0F1B2F;
+  
+    --brand:#E7C84B;      /* amarillo cálido */
+    --brand-2:#34D399;    /* verde vibrante */
+    --brand-3:#22C55E;    /* verde pro */
+    --text:#EAF0FF;
+    --muted:rgba(234,240,255,.75);
+    --muted2:rgba(234,240,255,.55);
+  
+    --card:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.12);
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+  
+    --radius:18px;
+  }
+  
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: radial-gradient(1200px 600px at 20% 10%, rgba(231,200,75,.18), transparent 55%),
+                radial-gradient(1200px 700px at 80% 0%, rgba(52,211,153,.18), transparent 55%),
+                linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+    color:var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    overflow-x:hidden;
+  }
+  
+  a{ text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  
+  /* =========================
+     UTILIDADES
+  ========================= */
+  .text-brand{ color: var(--brand); }
+  .text-muted-soft{ color: var(--muted2) !important; }
+  
+  .section-pad{ padding: 72px 0; }
+  .section-title{ font-weight:800; letter-spacing:.2px; }
+  .section-sub{ color: var(--muted2); }
+  
+  /* =========================
+     NAVBAR
+  ========================= */
+  .nav-glass{
+    backdrop-filter: blur(10px);
+    background: rgba(10,14,22,.72);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .brand-badge{
+    width:34px; height:34px;
+    display:grid; place-items:center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(231,200,75,.18), rgba(52,211,153,.18));
+    border: 1px solid var(--border);
+  }
+  
+  .navbar .nav-link{
+    color: rgba(255,255,255,.82) !important;
+    position:relative;
+  }
+  .navbar .nav-link:hover{ color: #fff !important; }
+  .navbar .nav-link::after{
+    content:"";
+    position:absolute;
+    left: 10px;
+    bottom: 6px;
+    width:0;
+    height:2px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    transition: width .25s ease;
+  }
+  .navbar .nav-link:hover::after{ width: calc(100% - 20px); }
+  
+  /* Botones */
+  .btn-brand{
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    border: none;
+    color: #0b0f16;
+    font-weight: 800;
+    box-shadow: 0 14px 35px rgba(231,200,75,.18);
+  }
+  .btn-brand:hover{ filter: brightness(1.04); transform: translateY(-1px); }
+  
+  .btn-whatsapp{
+    background: linear-gradient(90deg, #22c55e, #34d399);
+    border: none;
+    color: #07120c;
+    font-weight: 800;
+  }
+  .btn-whatsapp:hover{ filter: brightness(1.04); transform: translateY(-1px); }
+  
+  /* =========================
+     HERO
+  ========================= */
+  .hero-section{
+    position:relative;
+    padding: 80px 0 40px;
+    overflow:hidden;
+  }
+  
+  .hero-pill{
+    background: rgba(255,255,255,.08);
+    border: 1px solid var(--border);
+    color: rgba(255,255,255,.85);
+    padding: 10px 12px;
+    border-radius: 999px;
+  }
+  
+  .text-hero-muted{ color: var(--muted); }
+  
+  .hero-glow{
+    position:absolute;
+    inset:auto -40% -55% -40%;
+    height: 520px;
+    background: radial-gradient(closest-side, rgba(52,211,153,.20), transparent 70%),
+                radial-gradient(closest-side, rgba(231,200,75,.18), transparent 70%);
+    filter: blur(18px);
+    pointer-events:none;
+  }
+  
+  .hero-card{
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+  
+  .hero-card-top{
+    padding: 14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .hero-chip{
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(255,255,255,.14);
+    color: rgba(255,255,255,.85);
+  }
+  
+  .hero-image-wrap{
+    padding: 14px;
+  }
+  
+  /* 👇 MISMO TAMAÑO SIN RECORTE */
+  .hero-img{
+    width: 100%;
+    height: 330px;
+    object-fit: contain;  /* NO recorta */
+    background: rgba(0,0,0,.18);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  
+  .hero-card-bottom{
+    padding: 14px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.20);
+  }
+  
+  .hero-metrics{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .metric{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,.05);
+  }
+  .metric-icon{
+    width:34px; height:34px;
+    border-radius: 12px;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, rgba(231,200,75,.18), rgba(52,211,153,.18));
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  .metric-title{ font-weight:800; font-size: 13px; }
+  .metric-sub{ color: var(--muted2); font-size: 12px; }
+  
+  .hover-float{
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .hover-float:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 22px 60px rgba(0,0,0,.55);
+  }
+  
+  /* =========================
+     SERVICIOS
+  ========================= */
+  .service-card{
+    height: 100%;
+    padding: 18px;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    transition: transform .22s ease, border-color .22s ease;
+  }
+  .service-card:hover{
+    transform: translateY(-3px);
+    border-color: rgba(231,200,75,.30);
+  }
+  .service-icon{
+    width:48px; height:48px;
+    border-radius: 16px;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, rgba(231,200,75,.22), rgba(52,211,153,.18));
+    border: 1px solid rgba(255,255,255,.12);
+    font-size: 22px;
+  }
+  
+  .cta-strip{
+    padding: 16px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(231,200,75,.14), rgba(52,211,153,.12));
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .cta-badge{
+    width:44px; height:44px;
+    border-radius: 16px;
+    display:grid; place-items:center;
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  
+  /* =========================
+     ARTÍCULOS (Cards mismas alturas + imagenes NO recortadas)
+  ========================= */
+  .product-card{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow:hidden;
+    transition: transform .22s ease, border-color .22s ease;
+  }
+  .product-card:hover{
+    transform: translateY(-3px);
+    border-color: rgba(52,211,153,.28);
+  }
+  
+  /* Contenedor de imagen estándar */
+  .product-media{
+    height: 170px;
+    padding: 12px;
+    background: rgba(0,0,0,.22);
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  /* 👇 clave: NO recorta */
+  .product-img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* NO recorta */
+    border-radius: 12px;
+  }
+  
+  .product-body{
+    padding: 14px;
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+  }
+  
+  .price-tag{
+    font-weight: 900;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(231,200,75,.16);
+    border: 1px solid rgba(231,200,75,.22);
+  }
+  
+  /* =========================
+     PROYECTOS
+  ========================= */
+  .project-card{
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow:hidden;
+    height:100%;
+  }
+  
+  .project-media{
+    position:relative;
+    height: 210px;
+    background: rgba(0,0,0,.22);
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  
+  /* 👇 NO recorta */
+  .project-img{
+    width:100%;
+    height:100%;
+    object-fit: contain; /* NO recorta */
+    padding: 12px;
+  }
+  
+  .project-overlay{
+    position:absolute;
+    inset: 12px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.62));
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    padding: 12px;
+    opacity:0;
+    transform: translateY(8px);
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  .project-media:hover .project-overlay{
+    opacity:1;
+    transform: translateY(0);
+  }
+  
+  .project-tag{
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  
+  .project-body{
+    padding: 14px;
+  }
+  
+  .pricing-strip{ }
+  .pricing-card{
+    height:100%;
+    padding: 16px;
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .pricing-featured{
+    border-color: rgba(231,200,75,.28);
+    background: linear-gradient(135deg, rgba(231,200,75,.12), rgba(52,211,153,.10));
+  }
+  .pricing-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom: 10px;
+  }
+  .pricing-name{ font-weight: 900; }
+  .pricing-price{ color: var(--muted2); font-weight: 700; }
+  .pricing-list{
+    list-style:none;
+    padding:0;
+    margin:0 0 12px 0;
+    display:grid;
+    gap:8px;
+  }
+  .pricing-list li{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color: rgba(255,255,255,.86);
+  }
+  .pricing-list i{ color: var(--brand-2); }
+  
+  /* =========================
+     CONTACTO
+  ========================= */
+  .panel-card{
+    height:100%;
+    padding: 18px;
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  }
+  
+  .contact-badge{
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.85);
+    padding: 10px 12px;
+    border-radius: 999px;
+  }
+  
+  .info-list{
+    display:grid;
+    gap: 10px;
+  }
+  .info-item{
+    display:flex;
+    gap: 12px;
+    align-items:center;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.20);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  .info-item i{
+    font-size: 20px;
+    color: var(--brand);
+  }
+  
+  .map-illu{
+    position:relative;
+    border-radius: var(--radius);
+    overflow:hidden;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.20);
+    height: 220px;
+  }
+  .map-img{
+    width:100%;
+    height:100%;
+    object-fit: contain; /* NO recorta */
+    padding: 12px;
+  }
+  .map-overlay{
+    position:absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  
+  /* Forms */
+  .form-control, .form-select{
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(255,255,255,.12);
+    color: var(--text);
+  }
+  .form-control:focus, .form-select:focus{
+    background: rgba(0,0,0,.28);
+    border-color: rgba(231,200,75,.35);
+    box-shadow: 0 0 0 .2rem rgba(231,200,75,.12);
+    color: var(--text);
+  }
+  .form-label{ color: rgba(255,255,255,.85); font-weight:700; }
+  
+  /* =========================
+     MODALES
+  ========================= */
+  .modal-dark{
+    background: rgba(15,22,35,.96);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .modal-media{
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.22);
+    padding: 12px;
+  }
+  .modal-img{
+    width:100%;
+    height: 320px;
+    object-fit: contain; /* NO recorta */
+  }
+  .modal-badge{
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.85);
+    padding: 8px 10px;
+    border-radius: 999px;
+  }
+  
+  .mini-specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .mini-spec{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
+    color: rgba(255,255,255,.85);
+  }
+  .mini-spec i{ color: var(--brand); }
+  
+  /* =========================
+     FOOTER
+  ========================= */
+  .footer{
+    padding: 26px 0;
+    border-top: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.20);
+  }
+  
+  .footer-link{
+    color: rgba(255,255,255,.78);
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.05);
+  }
+  .footer-link:hover{
+    color:#fff;
+    border-color: rgba(52,211,153,.25);
+  }
+  
+  /* =========================
+     WhatsApp flotante
+  ========================= */
+  .wa-float{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display:grid;
+    place-items:center;
+    z-index: 999;
+    background: linear-gradient(135deg, #22c55e, #34d399);
+    color: #07120c;
+    font-size: 26px;
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.18);
+    transition: transform .2s ease;
+  }
+  .wa-float:hover{ transform: translateY(-3px); }
+  
+  /* =========================
+     Animaciones (reveal)
+  ========================= */
+  .reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+  .reveal.show{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* =========================
+     Responsive tweaks
+  ========================= */
+  @media (max-width: 991px){
+    .hero-img{ height: 280px; }
+    .modal-img{ height: 260px; }
+  }
