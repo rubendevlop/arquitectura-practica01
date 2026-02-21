@@ -1,810 +1,646 @@
-/* =========================
-   RESET + BASE
-========================= */
-:root{
-    /* Paleta clara estilo arquitectura (concreto / estudio) */
-    --bg-0:#F6F8FB;       /* fondo claro */
-    --bg-1:#EEF2F7;       /* gris suave */
-    --bg-2:#E7ECF3;       /* gris azulado */
-  
-    --brand:#E7C84B;      /* amarillo cálido (acento) */
-    --brand-2:#34D399;    /* verde vibrante (acento) */
-    --brand-3:#22C55E;    /* verde pro */
-  
-    --text:#0F172A;       /* texto oscuro */
-    --muted:rgba(15,23,42,.72);
-    --muted2:rgba(15,23,42,.55);
-  
-    --card:rgba(255,255,255,.78);   /* tarjetas claras */
-    --border:rgba(15,23,42,.12);
-    --shadow:0 18px 45px rgba(2,6,23,.12);
-  
-    --radius:18px;
-  }
-  
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  
-  body{
-    margin:0;
-    background:
-      radial-gradient(1200px 600px at 20% 10%, rgba(231,200,75,.16), transparent 55%),
-      radial-gradient(1200px 700px at 80% 0%, rgba(52,211,153,.12), transparent 55%),
-      linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
-    color:var(--text);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    overflow-x:hidden;
-  }
-  
-  a{ text-decoration:none; }
-  img{ max-width:100%; display:block; }
-  
-  /* =========================
-     UTILIDADES
-  ========================= */
-  .text-brand{ color: var(--brand); }
-  .text-muted-soft{ color: var(--muted2) !important; }
-  
-  .section-pad{ padding: 72px 0; }
-  .section-title{ font-weight:800; letter-spacing:.2px; }
-  .section-sub{ color: var(--muted2); }
-  
-  /* =========================
-     NAVBAR
-  ========================= */
-  .nav-glass{
-    backdrop-filter: blur(10px);
-    background: rgba(255,255,255,.72); /* antes oscuro */
-    border-bottom: 1px solid var(--border);
-  }
-  .text-studio{
-    color: black;
-  }
-  
-  .brand-badge{
-    width:34px; height:34px;
-    display:grid; place-items:center;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(231,200,75,.20), rgba(52,211,153,.14));
-    border: 1px solid var(--border);
-  }
-  
-  .navbar .nav-link{
-    color: rgba(15,23,42,.82) !important; /* antes blanco */
-    position:relative;
-  }
-  .navbar .nav-link:hover{ color: rgba(15,23,42,1) !important; }
-  
-  .navbar .nav-link::after{
-    content:"";
-    position:absolute;
-    left: 10px;
-    bottom: 6px;
-    width:0;
-    height:2px;
-    background: linear-gradient(90deg, var(--brand), var(--brand-2));
-    transition: width .25s ease;
-  }
-  .navbar .nav-link:hover::after{ width: calc(100% - 20px); }
-  
-  /* Botones */
-  .btn-brand{
-    background: linear-gradient(90deg, var(--brand), var(--brand-2));
-    border: none;
-    color: #0b0f16;
-    font-weight: 800;
-    box-shadow: 0 14px 35px rgba(231,200,75,.18);
-  }
-  .btn-brand:hover{ filter: brightness(1.04); transform: translateY(-1px); }
-  
-  .btn-whatsapp{
-    background: linear-gradient(90deg, #22c55e, #34d399);
-    border: none;
-    color: #07120c;
-    font-weight: 800;
-  }
-  .btn-whatsapp:hover{ filter: brightness(1.04); transform: translateY(-1px); }
-  
-  /* Ajuste clave: btn-outline-light para tema claro */
-  .btn-outline-light{
-    border-color: rgba(15,23,42,.18) !important;
-    color: rgba(15,23,42,.85) !important;
-    background: rgba(255,255,255,.55) !important;
-  }
-  .btn-outline-light:hover{
-    background: rgba(255,255,255,.85) !important;
-    color: rgba(15,23,42,1) !important;
-  }
-  /* =========================
-   HERO
-========================= */
-.hero-section{
-    position:relative;
-    padding: 80px 0 40px;
-    overflow:hidden;
-  }
-  
-  .hero-pill{
-    background: rgba(255,255,255,.72);
-    border: 1px solid var(--border);
-    color: rgba(15,23,42,.82);
-    padding: 10px 12px;
-    border-radius: 999px;
-  }
-  
-  .text-hero-muted{ color: var(--muted); }
-  
-  .hero-glow{
-    position:absolute;
-    inset:auto -40% -55% -40%;
-    height: 520px;
-    background:
-      radial-gradient(closest-side, rgba(52,211,153,.18), transparent 70%),
-      radial-gradient(closest-side, rgba(231,200,75,.16), transparent 70%);
-    filter: blur(18px);
-    pointer-events:none;
-  }
-  .bi-buildings{color: black;}
-  
-  .hero-card{
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    overflow:hidden;
-  }
-  
-  .hero-card-top{
-    padding: 14px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  
-  .hero-chip{
-    font-size: 12px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.66);
-    border: 1px solid rgba(15,23,42,.12);
-    color: rgba(15,23,42,.80);
-  }
-  
-  .hero-image-wrap{
-    padding: 14px;
-  }
-  
-  /* 👇 MISMO TAMAÑO SIN RECORTE */
-  .hero-img{
-    width: 100%;
-    height: 330px;
-    object-fit: contain;  /* NO recorta */
-    background: rgba(15,23,42,.04);
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,.10);
-  }
-  
-  .hero-card-bottom{
-    padding: 14px;
-    border-top: 1px solid rgba(15,23,42,.10);
-    background: rgba(255,255,255,.58);
-    color: rgba(15,23,42,.88);
-  }
-  
-  .hero-metrics{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  
-  .metric{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    padding: 10px 12px;
-    border: 1px solid rgba(15,23,42,.10);
-    border-radius: 14px;
-    background: rgba(255,255,255,.60);
-  }
-  
-  .metric-icon{
-    width:34px; height:34px;
-    border-radius: 12px;
-    display:grid; place-items:center;
-    background: linear-gradient(135deg, rgba(231,200,75,.20), rgba(52,211,153,.14));
-    border: 1px solid rgba(15,23,42,.10);
-  }
-  
-  .metric-title{ font-weight:800; font-size: 13px; color: rgba(15,23,42,1); }
-  .metric-sub{ color: var(--muted2); font-size: 12px; }
-  
-  .hover-float{
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .hover-float:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 22px 60px rgba(2,6,23,.18);
-  }
-  /* =========================
-   SERVICIOS
-========================= */
-.service-card{
-    height: 100%;
-    padding: 18px;
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-    transition: transform .22s ease, border-color .22s ease;
-  }
-  .service-card:hover{
-    transform: translateY(-3px);
-    border-color: rgba(231,200,75,.35);
-  }
-  
-  .service-icon{
-    width:48px; height:48px;
-    border-radius: 16px;
-    display:grid; place-items:center;
-    background: linear-gradient(135deg, rgba(231,200,75,.22), rgba(52,211,153,.14));
-    border: 1px solid rgba(15,23,42,.10);
-    font-size: 22px;
-    color: rgba(15,23,42,.92);
-  }
-  
-  .cta-strip{
-    padding: 16px;
-    border-radius: var(--radius);
-    background: linear-gradient(135deg, rgba(231,200,75,.14), rgba(52,211,153,.10));
-    border: 1px solid rgba(15,23,42,.10);
-  }
-  
-  .cta-badge{
-    width:44px; height:44px;
-    border-radius: 16px;
-    display:grid; place-items:center;
-    background: rgba(255,255,255,.66);
-    border: 1px solid rgba(15,23,42,.10);
-    color: rgba(15,23,42,.92);
-  }
-  
-  /* =========================
-     ARTÍCULOS (Cards mismas alturas + imágenes NO recortadas)
-  ========================= */
-  .product-card{
-    height: 100%;
-    display:flex;
-    flex-direction: column;
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    overflow:hidden;
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-    transition: transform .22s ease, border-color .22s ease;
-  }
-  .product-card:hover{
-    transform: translateY(-3px);
-    border-color: rgba(52,211,153,.30);
-  }
-  
-  /* Contenedor de imagen estándar */
-  .product-media{
-    height: 170px;
-    padding: 12px;
-    background: rgba(15,23,42,.04);
-    border-bottom: 1px solid rgba(15,23,42,.10);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  
-  /* 👇 clave: NO recorta */
-  .product-img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* NO recorta */
-    border-radius: 12px;
-  }
-  
-  .product-body{
-    padding: 14px;
-    display:flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 6px;
-    color: rgba(15,23,42,.92);
-  }
-  
-  .price-tag{
-    font-weight: 900;
-    font-size: 13px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(231,200,75,.22);
-    border: 1px solid rgba(231,200,75,.35);
-    color: rgba(15,23,42,1);
-  }
-  /* =========================
-   PROYECTOS
-========================= */
-.project-card{
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    overflow:hidden;
-    height:100%;
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-  }
-  
-  .project-media{
-    position:relative;
-    height: 210px;
-    background: rgba(15,23,42,.04);
-    border-bottom: 1px solid rgba(15,23,42,.10);
-  }
-  
-  /* 👇 NO recorta */
-  .project-img{
-    width:100%;
-    height:100%;
-    object-fit: contain; /* NO recorta */
-    padding: 12px;
-  }
-  
-  /* overlay más suave (no negro pesado) */
-  .project-overlay{
-    position:absolute;
-    inset: 12px;
-    border-radius: 14px;
-    background: linear-gradient(180deg, rgba(255,255,255,0), rgba(15,23,42,.55));
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    padding: 12px;
-    opacity:0;
-    transform: translateY(8px);
-    transition: opacity .22s ease, transform .22s ease;
-  }
-  .project-media:hover .project-overlay{
-    opacity:1;
-    transform: translateY(0);
-  }
-  
-  .project-tag{
-    font-size: 12px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(255,255,255,.35);
-    color: rgba(15,23,42,.90);
-  }
-  
-  .project-body{
-    padding: 14px;
-    color: rgba(15,23,42,.92);
-  }
-  
-  /* =========================
-     PRICING
-  ========================= */
-  .pricing-strip{ }
-  
-  .pricing-card{
-    height:100%;
-    padding: 16px;
-    border-radius: var(--radius);
-    background: rgba(255,255,255,.78);
-    border: 1px solid rgba(15,23,42,.12);
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-  }
-  
-  .pricing-featured{
-    border-color: rgba(231,200,75,.35);
-    background: linear-gradient(135deg, rgba(231,200,75,.16), rgba(52,211,153,.10));
-  }
-  
-  .pricing-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:10px;
-    margin-bottom: 10px;
-  }
-  
-  .pricing-name{ font-weight: 900; color: rgba(15,23,42,1); }
-  .pricing-price{ color: var(--muted2); font-weight: 700; }
-  
-  .pricing-list{
-    list-style:none;
-    padding:0;
-    margin:0 0 12px 0;
-    display:grid;
-    gap:8px;
-  }
-  
-  .pricing-list li{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color: rgba(15,23,42,.88);
-  }
-  
-  .pricing-list i{ color: var(--brand-3); }
+/* ===============================
+   RESET PROFESIONAL
+   =============================== */
 
-  /* =========================
-   CONTACTO
-========================= */
-.panel-card{
-    height:100%;
-    padding: 18px;
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-    color: rgba(15,23,42,.92);
+   *,
+   *::before,
+   *::after {
+     box-sizing: border-box;
+   }
+   
+   html {
+     scroll-behavior: smooth;
+   }
+   
+   body {
+     text-rendering: optimizeLegibility;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+   
+   
+   /* ===============================
+      TIPOGRAFÍA DE ESTUDIO
+      =============================== */
+   
+   /* Import elegante tipo arquitectura */
+   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+   
+   body {
+     font-family: "Inter", system-ui, sans-serif;
+     letter-spacing: 0.01em;
+   }
+   
+   /* Títulos principales */
+   h1, h2, h3, h4 {
+     font-family: "Playfair Display", serif;
+     letter-spacing: -0.01em;
+   }
+   
+   
+   /* ===============================
+      SELECCIÓN DE TEXTO
+      =============================== */
+   
+   ::selection {
+     background: #C2A36B;
+     color: white;
+   }
+   
+   
+   /* ===============================
+      SCROLLBAR (detalle premium)
+      =============================== */
+   
+   ::-webkit-scrollbar {
+     width: 10px;
+   }
+   
+   ::-webkit-scrollbar-track {
+     background: #f2f2f2;
+   }
+   
+   ::-webkit-scrollbar-thumb {
+     background: #cfc7bb;
+     border-radius: 20px;
+   }
+   
+   ::-webkit-scrollbar-thumb:hover {
+     background: #b6ad9f;
+   }
+   
+   
+   /* ===============================
+      ANIMACIONES BASE
+      =============================== */
+   
+   .fade-up {
+     opacity: 0;
+     transform: translateY(30px);
+     transition: all 0.7s cubic-bezier(.19,1,.22,1);
+   }
+   
+   .fade-up.visible {
+     opacity: 1;
+     transform: translateY(0);
+   }
+   
+   .fade {
+     opacity: 0;
+     transition: opacity .6s ease;
+   }
+   
+   .fade.visible {
+     opacity: 1;
+   }
+   
+   
+   /* ===============================
+      BOTONES PROFESIONALES
+      =============================== */
+   
+   button,
+   a {
+     transition:
+       transform .25s cubic-bezier(.19,1,.22,1),
+       box-shadow .25s cubic-bezier(.19,1,.22,1),
+       background .25s,
+       color .25s;
+   }
+   
+   button:hover,
+   a:hover {
+     transform: translateY(-2px);
+   }
+   
+   button:active,
+   a:active {
+     transform: translateY(0);
+   }
+   
+   
+   /* ===============================
+      SOMBRAS ARQUITECTÓNICAS
+      =============================== */
+   
+   .shadow-soft {
+     box-shadow:
+       0 1px 1px rgba(0,0,0,0.02),
+       0 4px 10px rgba(0,0,0,0.04),
+       0 12px 30px rgba(0,0,0,0.06);
+   }
+   
+   .shadow-hover:hover {
+     box-shadow:
+       0 2px 2px rgba(0,0,0,0.03),
+       0 10px 20px rgba(0,0,0,0.08),
+       0 25px 60px rgba(0,0,0,0.12);
+   }
+   /* ===============================
+   NAVBAR (sticky + blur premium)
+   =============================== */
+
+header {
+  transition: background .35s ease, border-color .35s ease;
+}
+
+/* Cuando hagamos JS después, podemos agregar una clase .scrolled */
+header.scrolled {
+  background: rgba(247, 245, 241, 0.92) !important;
+  border-color: rgba(0,0,0,0.14) !important;
+}
+
+/* Links del navbar */
+header nav a {
+  position: relative;
+}
+
+/* Subrayado elegante al hover */
+header nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0%;
+  height: 2px;
+  background: rgba(194, 163, 107, 0.9);
+  transition: width .35s cubic-bezier(.19,1,.22,1);
+}
+
+header nav ul a:hover::after {
+  width: 100%;
+}
+
+/* Botón menú mobile */
+#btnMenu {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+#btnMenu:hover {
+  box-shadow: 0 14px 35px rgba(0,0,0,0.10);
+}
+
+
+/* ===============================
+   HERO (sensación editorial)
+   =============================== */
+
+/* Le damos “grano” sutil al hero, se ve más premium */
+#inicio section:first-of-type::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.22;
+}
+
+/* Ajuste de texto para que no “brille” raro sobre imagen */
+#inicio h1,
+#inicio p {
+  text-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+/* Pills del hero */
+#inicio .rounded-full {
+  backdrop-filter: blur(8px);
+}
+
+
+/* ===============================
+   CARDS (servicios/proyectos/artículos)
+   =============================== */
+
+/* Border suave + animación al hover (más “arquitectura”) */
+article {
+  transition:
+    transform .35s cubic-bezier(.19,1,.22,1),
+    box-shadow .35s cubic-bezier(.19,1,.22,1),
+    border-color .35s ease;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,0,0,0.16);
+  box-shadow:
+    0 2px 2px rgba(0,0,0,0.03),
+    0 16px 30px rgba(0,0,0,0.08),
+    0 40px 80px rgba(0,0,0,0.12);
+}
+
+/* Títulos de cards un toque más finos */
+article h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Texto más legible en cards */
+article p {
+  line-height: 1.65;
+}
+
+
+/* ===============================
+   IMÁGENES (sin recorte feo + consistencia)
+   =============================== */
+
+/* Evita que en algunos navegadores se deformen */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* En cards: suaviza el borde de la imagen */
+article img {
+  filter: contrast(1.02) saturate(1.02);
+}
+
+/* Un mini brillo al hover (sutil) */
+article:hover img {
+  filter: contrast(1.05) saturate(1.06);
+}
+
+
+/* ===============================
+   LINKS FINOS (estilo editorial)
+   =============================== */
+
+a.underline {
+  text-decoration-thickness: 2px;
+}
+
+a.underline:hover {
+  text-decoration-color: rgba(0,0,0,0.55);
+}/* ===============================
+   NAVBAR (sticky + blur premium)
+   =============================== */
+
+header {
+  transition: background .35s ease, border-color .35s ease;
+}
+
+/* Cuando hagamos JS después, podemos agregar una clase .scrolled */
+header.scrolled {
+  background: rgba(247, 245, 241, 0.92) !important;
+  border-color: rgba(0,0,0,0.14) !important;
+}
+
+/* Links del navbar */
+header nav a {
+  position: relative;
+}
+
+/* Subrayado elegante al hover */
+header nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0%;
+  height: 2px;
+  background: rgba(194, 163, 107, 0.9);
+  transition: width .35s cubic-bezier(.19,1,.22,1);
+}
+
+header nav ul a:hover::after {
+  width: 100%;
+}
+
+/* Botón menú mobile */
+#btnMenu {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+#btnMenu:hover {
+  box-shadow: 0 14px 35px rgba(0,0,0,0.10);
+}
+
+
+/* ===============================
+   HERO (sensación editorial)
+   =============================== */
+
+/* Le damos “grano” sutil al hero, se ve más premium */
+#inicio section:first-of-type::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.22;
+}
+
+/* Ajuste de texto para que no “brille” raro sobre imagen */
+#inicio h1,
+#inicio p {
+  text-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+/* Pills del hero */
+#inicio .rounded-full {
+  backdrop-filter: blur(8px);
+}
+
+
+/* ===============================
+   CARDS (servicios/proyectos/artículos)
+   =============================== */
+
+/* Border suave + animación al hover (más “arquitectura”) */
+article {
+  transition:
+    transform .35s cubic-bezier(.19,1,.22,1),
+    box-shadow .35s cubic-bezier(.19,1,.22,1),
+    border-color .35s ease;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,0,0,0.16);
+  box-shadow:
+    0 2px 2px rgba(0,0,0,0.03),
+    0 16px 30px rgba(0,0,0,0.08),
+    0 40px 80px rgba(0,0,0,0.12);
+}
+
+/* Títulos de cards un toque más finos */
+article h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Texto más legible en cards */
+article p {
+  line-height: 1.65;
+}
+
+
+/* ===============================
+   IMÁGENES (sin recorte feo + consistencia)
+   =============================== */
+
+/* Evita que en algunos navegadores se deformen */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* En cards: suaviza el borde de la imagen */
+article img {
+  filter: contrast(1.02) saturate(1.02);
+}
+
+/* Un mini brillo al hover (sutil) */
+article:hover img {
+  filter: contrast(1.05) saturate(1.06);
+}
+
+
+/* ===============================
+   LINKS FINOS (estilo editorial)
+   =============================== */
+
+a.underline {
+  text-decoration-thickness: 2px;
+}
+
+a.underline:hover {
+  text-decoration-color: rgba(0,0,0,0.55);
+}
+/* ===============================
+   MODAL (premium + animación)
+   =============================== */
+
+   #modal {
+    animation: modalFadeIn .25s ease both;
   }
   
-  .contact-badge{
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(15,23,42,.12);
-    color: rgba(15,23,42,.86);
+  #modal.hidden {
+    display: none;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Contenedor del modal (la tarjeta) */
+  #modal > div.relative {
+    animation: modalPop .35s cubic-bezier(.19,1,.22,1) both;
+  }
+  
+  @keyframes modalPop {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Imagen dentro del modal */
+  #modalImage {
+    box-shadow:
+      0 1px 1px rgba(0,0,0,0.03),
+      0 10px 30px rgba(0,0,0,0.10);
+  }
+  
+  /* Botón cerrar: más “táctil” */
+  #modal [data-close-modal] {
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  
+  #modal [data-close-modal]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  }
+  
+  
+  /* ===============================
+     FORMULARIO (pro feel)
+     =============================== */
+  
+  #contactForm input,
+  #contactForm select,
+  #contactForm textarea {
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  }
+  
+  #contactForm input:focus,
+  #contactForm select:focus,
+  #contactForm textarea:focus {
+    border-color: rgba(194, 163, 107, 0.55);
+    box-shadow: 0 0 0 4px rgba(194, 163, 107, 0.18);
+    transform: translateY(-1px);
+  }
+  
+  /* Placeholder sobrio */
+  #contactForm input::placeholder,
+  #contactForm textarea::placeholder {
+    color: rgba(0,0,0,0.40);
+  }
+  
+  /* Mensaje de estado del form */
+  #formMsg {
+    margin-top: 6px;
     padding: 10px 12px;
-    border-radius: 999px;
-  }
-  
-  .info-list{
-    display:grid;
-    gap: 10px;
-  }
-  .info-item{
-    display:flex;
-    gap: 12px;
-    align-items:center;
-    padding: 12px;
     border-radius: 14px;
-    background: rgba(255,255,255,.65);
-    border: 1px solid rgba(15,23,42,.10);
-  }
-  .info-item i{
-    font-size: 20px;
-    color: var(--brand-3);
   }
   
-  .map-illu{
-    position:relative;
-    border-radius: var(--radius);
-    overflow:hidden;
-    border: 1px solid rgba(15,23,42,.10);
-    background: rgba(15,23,42,.04);
-    height: 220px;
-  }
-  .map-img{
-    width:100%;
-    height:100%;
-    object-fit: contain; /* NO recorta */
-    padding: 12px;
-  }
-  .map-overlay{
-    position:absolute;
-    left: 12px;
-    bottom: 12px;
-    padding: 10px 12px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(15,23,42,.10);
-    color: rgba(15,23,42,.92);
+  #formMsg.ok {
+    display: block !important;
+    background: rgba(16, 185, 129, 0.10);
+    color: rgb(16, 185, 129);
+    border: 1px solid rgba(16, 185, 129, 0.25);
   }
   
-  /* Forms */
-  .form-control, .form-select{
-    background: rgba(255,255,255,.92);
-    border: 1px solid rgba(15,23,42,.14);
-    color: rgba(15,23,42,1);
-  }
-  .form-control::placeholder{ color: rgba(15,23,42,.45); }
-  .form-control:focus, .form-select:focus{
-    background: rgba(255,255,255,.98);
-    border-color: rgba(231,200,75,.55);
-    box-shadow: 0 0 0 .2rem rgba(231,200,75,.18);
-    color: rgba(15,23,42,1);
-  }
-  .form-label{ color: rgba(15,23,42,.88); font-weight:700; }
-  
-  /* =========================
-     MODALES (claros)
-  ========================= */
-  .modal-dark{
-    background: rgba(255,255,255,.96);
-    border: 1px solid rgba(15,23,42,.14);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    color: rgba(15,23,42,1);
-  }
-  .modal-media{
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,.12);
-    background: rgba(15,23,42,.04);
-    padding: 12px;
-  }
-  .modal-img{
-    width:100%;
-    height: 320px;
-    object-fit: contain; /* NO recorta */
-  }
-  .modal-badge{
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(15,23,42,.12);
-    color: rgba(15,23,42,.86);
-    padding: 8px 10px;
-    border-radius: 999px;
+  #formMsg.err {
+    display: block !important;
+    background: rgba(239, 68, 68, 0.10);
+    color: rgb(239, 68, 68);
+    border: 1px solid rgba(239, 68, 68, 0.25);
   }
   
-  /* chips */
-  .mini-specs{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .mini-spec{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding: 8px 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.70);
-    border: 1px solid rgba(15,23,42,.10);
-    color: rgba(15,23,42,.86);
-  }
-  .mini-spec i{ color: var(--brand-3); }
-  
-  /* =========================
-     FOOTER
-  ========================= */
-  .footer{
-    padding: 26px 0;
-    border-top: 1px solid rgba(15,23,42,.10);
-    background: rgba(255,255,255,.70);
+  /* Botón enviar: más “arquitectura” */
+  #contactForm button[type="submit"] {
+    box-shadow:
+      0 2px 2px rgba(0,0,0,0.05),
+      0 12px 25px rgba(0,0,0,0.14);
   }
   
-  .footer-link{
-    color: rgba(15,23,42,.78);
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(15,23,42,.12);
-    background: rgba(255,255,255,.65);
-  }
-  .footer-link:hover{
-    color: rgba(15,23,42,1);
-    border-color: rgba(52,211,153,.35);
+  #contactForm button[type="submit"]:hover {
+    box-shadow:
+      0 2px 2px rgba(0,0,0,0.06),
+      0 16px 35px rgba(0,0,0,0.18);
   }
   
-  /* =========================
-     WhatsApp flotante
-  ========================= */
-  .wa-float{
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display:grid;
-    place-items:center;
-    z-index: 999;
-    background: linear-gradient(135deg, #22c55e, #34d399);
-    color: #07120c;
-    font-size: 26px;
-    box-shadow: 0 18px 55px rgba(2,6,23,.18);
-    border: 1px solid rgba(255,255,255,.55);
-    transition: transform .2s ease;
-  }
-  .wa-float:hover{ transform: translateY(-3px); }
   
-  /* =========================
-     Animaciones (reveal)
-  ========================= */
-  .reveal{
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity .55s ease, transform .55s ease;
-  }
-  .reveal.show{
-    opacity: 1;
-    transform: translateY(0);
+  /* ===============================
+     SECCIÓN CONTACTO (fondo oscuro)
+     =============================== */
+  
+  /* Imagen del mapa: se ve más “render” */
+  #contacto img {
+    filter: contrast(1.03) saturate(1.02);
   }
   
-  /* =========================
-     Responsive tweaks
-  ========================= */
-  @media (max-width: 991px){
-    .hero-img{ height: 280px; }
-    .modal-img{ height: 260px; }
-  }/* =========================
-   CONTACTO
-========================= */
-.panel-card{
-    height:100%;
-    padding: 18px;
-    border-radius: var(--radius);
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 25px rgba(2,6,23,.10);
-    color: rgba(15,23,42,.92);
+  /* Tarjetas dentro del contacto */
+  #contacto .rounded-2xl {
+    transition: transform .25s ease, background .25s ease;
   }
   
-  .contact-badge{
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(15,23,42,.12);
-    color: rgba(15,23,42,.86);
-    padding: 10px 12px;
-    border-radius: 999px;
+  #contacto .rounded-2xl:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.12);
   }
   
-  .info-list{
-    display:grid;
-    gap: 10px;
+  /* Footer más sobrio */
+  footer {
+    font-size: 0.95rem;
   }
-  .info-item{
-    display:flex;
-    gap: 12px;
-    align-items:center;
-    padding: 12px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.65);
-    border: 1px solid rgba(15,23,42,.10);
+  /* ===============================
+   RESPONSIVE (ajustes finos)
+   =============================== */
+
+@media (max-width: 1024px) {
+  /* Reduce un poco la agresividad del hover en pantallas más chicas */
+  article:hover {
+    transform: translateY(-2px);
   }
-  .info-item i{
-    font-size: 20px;
-    color: var(--brand-3);
+
+  /* Modal más pegado arriba */
+  #modal > div.relative {
+    margin-top: 24px !important;
   }
-  
-  .map-illu{
-    position:relative;
-    border-radius: var(--radius);
-    overflow:hidden;
-    border: 1px solid rgba(15,23,42,.10);
-    background: rgba(15,23,42,.04);
-    height: 220px;
+}
+
+@media (max-width: 640px) {
+  /* Hero: título más compacto para que no se parta feo */
+  #inicio h1 {
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
-  .map-img{
-    width:100%;
-    height:100%;
-    object-fit: contain; /* NO recorta */
-    padding: 12px;
+
+  /* Botones del hero: sin salto raro */
+  #inicio a,
+  #inicio button {
+    width: 100%;
   }
-  .map-overlay{
-    position:absolute;
-    left: 12px;
-    bottom: 12px;
-    padding: 10px 12px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(15,23,42,.10);
-    color: rgba(15,23,42,.92);
+
+  /* Footer: mejor spacing */
+  footer .gap-6 {
+    gap: 14px !important;
   }
-  
-  /* Forms */
-  .form-control, .form-select{
-    background: rgba(255,255,255,.92);
-    border: 1px solid rgba(15,23,42,.14);
-    color: rgba(15,23,42,1);
+}
+
+
+/* ===============================
+   UTILIDADES PREMIUM (reusables)
+   =============================== */
+
+/* Línea fina decorativa (podés usarla si después querés) */
+.hr-soft {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,0,0,0.12),
+    transparent
+  );
+}
+
+/* Sombra suave para secciones claras */
+.section-soft {
+  background:
+    radial-gradient(1000px 500px at 10% 0%, rgba(194,163,107,0.12), transparent 45%),
+    radial-gradient(1000px 500px at 90% 10%, rgba(0,0,0,0.04), transparent 45%);
+}
+
+/* Brillo sutil en botones oscuros */
+.btn-glow:hover {
+  box-shadow:
+    0 2px 2px rgba(0,0,0,0.05),
+    0 18px 45px rgba(194,163,107,0.25);
+}
+
+
+/* ===============================
+   ACCESIBILIDAD (detalles pro)
+   =============================== */
+
+:focus-visible {
+  outline: 3px solid rgba(194,163,107,0.55);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
-  .form-control::placeholder{ color: rgba(15,23,42,.45); }
-  .form-control:focus, .form-select:focus{
-    background: rgba(255,255,255,.98);
-    border-color: rgba(231,200,75,.55);
-    box-shadow: 0 0 0 .2rem rgba(231,200,75,.18);
-    color: rgba(15,23,42,1);
-  }
-  .form-label{ color: rgba(15,23,42,.88); font-weight:700; }
-  
-  /* =========================
-     MODALES (claros)
-  ========================= */
-  .modal-dark{
-    background: rgba(255,255,255,.96);
-    border: 1px solid rgba(15,23,42,.14);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    color: rgba(15,23,42,1);
-  }
-  .modal-media{
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,.12);
-    background: rgba(15,23,42,.04);
-    padding: 12px;
-  }
-  .modal-img{
-    width:100%;
-    height: 320px;
-    object-fit: contain; /* NO recorta */
-  }
-  .modal-badge{
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(15,23,42,.12);
-    color: rgba(15,23,42,.86);
-    padding: 8px 10px;
-    border-radius: 999px;
-  }
-  
-  /* chips */
-  .mini-specs{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .mini-spec{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding: 8px 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.70);
-    border: 1px solid rgba(15,23,42,.10);
-    color: rgba(15,23,42,.86);
-  }
-  .mini-spec i{ color: var(--brand-3); }
-  
-  /* =========================
-     FOOTER
-  ========================= */
-  .footer{
-    padding: 26px 0;
-    border-top: 1px solid rgba(15,23,42,.10);
-    background: rgba(255,255,255,.70);
-  }
-  
-  .footer-link{
-    color: rgba(15,23,42,.78);
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(15,23,42,.12);
-    background: rgba(255,255,255,.65);
-  }
-  .footer-link:hover{
-    color: rgba(15,23,42,1);
-    border-color: rgba(52,211,153,.35);
-  }
-  
-  /* =========================
-     WhatsApp flotante
-  ========================= */
-  .wa-float{
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display:grid;
-    place-items:center;
-    z-index: 999;
-    background: linear-gradient(135deg, #22c55e, #34d399);
-    color: #07120c;
-    font-size: 26px;
-    box-shadow: 0 18px 55px rgba(2,6,23,.18);
-    border: 1px solid rgba(255,255,255,.55);
-    transition: transform .2s ease;
-  }
-  .wa-float:hover{ transform: translateY(-3px); }
-  
-  /* =========================
-     Animaciones (reveal)
-  ========================= */
-  .reveal{
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity .55s ease, transform .55s ease;
-  }
-  .reveal.show{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* =========================
-     Responsive tweaks
-  ========================= */
-  @media (max-width: 991px){
-    .hero-img{ height: 280px; }
-    .modal-img{ height: 260px; }
-  }
+}
+
+
+/* ===============================
+   FIXES (evitar bugs visuales)
+   =============================== */
+
+/* Evita que el modal “mueva” el body raro en algunos navegadores */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Evita saltos por imágenes grandes antes de cargar */
+img {
+  background: rgba(0,0,0,0.03);
+}
+
+/* Botones no se deforman */
+button {
+  -webkit-tap-highlight-color: transparent;
+}

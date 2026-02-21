@@ -3,582 +3,457 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estudio de Arquitectura | Proyectos & Diseño</title>
-  <meta name="description" content="Landing page de arquitectura con catálogo de artículos, proyectos y contacto por WhatsApp." />
+  <title>Estudio Arq. — Arquitectura & Diseño</title>
+  <meta name="description" content="Estudio de arquitectura: diseño, dirección y ejecución. Proyectos residenciales y comerciales con enfoque contemporáneo." />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Tailwind CSS (CDN para maquetar rápido) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Config Tailwind (opcional pero recomendado) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#0B0F14",
+            stoneish: "#0F172A",
+            sand: "#E7E0D6",
+            paper: "#F7F5F1",
+            accent: "#C2A36B"
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Tu CSS (después lo armamos) -->
   <link rel="stylesheet" href="index.css" />
 </head>
-<body>
 
+<body class="bg-paper text-stoneish antialiased">
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top nav-glass">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#inicio">
-        <span class="brand-badge"><i class="bi bi-buildings"></i></span>
-        <span class="text-studio">Estudio <span class="text-brand">ARQ</span></span>
+  <header class="sticky top-0 z-50 border-b border-black/10 bg-paper/80 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-6">
+      <a href="#inicio" class="group inline-flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink text-paper shadow-sm">
+          <span class="text-lg font-semibold">ARQ</span>
+        </span>
+        <div class="leading-tight">
+          <p class="text-sm font-semibold tracking-wide">ESTUDIO</p>
+          <p class="text-xs text-black/60">Arquitectura & Diseño</p>
+        </div>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
+      <button id="btnMenu" class="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-black/5 lg:hidden" aria-label="Abrir menú">
+        Menú
       </button>
 
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto gap-lg-2 mt-3 mt-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#articulos">Artículos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      <ul class="hidden items-center gap-8 lg:flex">
+        <li><a class="text-sm font-medium hover:text-black/70" href="#servicios">Servicios</a></li>
+        <li><a class="text-sm font-medium hover:text-black/70" href="#proyectos">Proyectos</a></li>
+        <li><a class="text-sm font-medium hover:text-black/70" href="#articulos">Artículos</a></li>
+        <li><a class="text-sm font-medium hover:text-black/70" href="#contacto">Contacto</a></li>
+      </ul>
+
+      <div class="hidden items-center gap-3 lg:flex">
+        <a href="#contacto" class="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5">
+          Agendar reunión
+        </a>
+        <a href="#proyectos" class="rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-paper shadow-sm hover:opacity-90">
+          Ver portfolio
+        </a>
+      </div>
+    </nav>
+
+    <!-- MENÚ MOBILE -->
+    <div id="menuMobile" class="hidden border-t border-black/10 bg-paper lg:hidden">
+      <div class="mx-auto max-w-7xl px-4 py-4">
+        <ul class="grid gap-3">
+          <li><a class="block rounded-xl px-3 py-2 text-sm font-medium hover:bg-black/5" href="#servicios">Servicios</a></li>
+          <li><a class="block rounded-xl px-3 py-2 text-sm font-medium hover:bg-black/5" href="#proyectos">Proyectos</a></li>
+          <li><a class="block rounded-xl px-3 py-2 text-sm font-medium hover:bg-black/5" href="#articulos">Artículos</a></li>
+          <li><a class="block rounded-xl px-3 py-2 text-sm font-medium hover:bg-black/5" href="#contacto">Contacto</a></li>
         </ul>
 
-        <div class="d-flex gap-2 ms-lg-3 mt-3 mt-lg-0">
-          <a class="btn btn-outline-light btn-sm px-3" href="#articulos">Ver catálogo</a>
-          <a id="btnNavWA" class="btn btn-whatsapp btn-sm px-3" href="#" target="_blank" rel="noopener">
-            <i class="bi bi-whatsapp me-1"></i> WhatsApp
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <a href="#contacto" class="rounded-xl border border-black/10 bg-white px-4 py-2 text-center text-sm font-semibold shadow-sm hover:bg-black/5">
+            Agendar
+          </a>
+          <a href="#proyectos" class="rounded-xl bg-ink px-4 py-2 text-center text-sm font-semibold text-paper shadow-sm hover:opacity-90">
+            Portfolio
           </a>
         </div>
       </div>
     </div>
-  </nav>
-
-  <!-- HERO -->
-  <header id="inicio" class="hero-section">
-    <div class="container">
-      <div class="row align-items-center gy-4">
-        <div class="col-lg-6">
-          <div class="badge hero-pill mb-3">
-            <i class="bi bi-stars me-2"></i> Diseño moderno • Obra eficiente • Presupuesto rápido
-          </div>
-
-          <h1 class="display-5 fw-bold lh-sm">
-            Arquitectura que se <span class="text-brand">ve</span> y se <span class="text-brand">vive</span>
-          </h1>
-
-          <p class="lead text-hero-muted mt-3">
-            Proyectos, reformas e interiores pensados para durar.
-            Mostramos artículos y soluciones reales aplicadas a obra.
-          </p>
-
-          <div class="d-flex flex-wrap gap-2 mt-4">
-            <a href="#articulos" class="btn btn-brand btn-lg">
-              <i class="bi bi-grid-1x2-fill me-2"></i> Ver artículos
-            </a>
-
-            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">
-              <i class="bi bi-calculator me-2"></i> Pedir presupuesto
-            </button>
-          </div>
-
-          <div class="hero-metrics mt-4">
-            <div class="metric">
-              <div class="metric-icon"><i class="bi bi-rulers"></i></div>
-              <div>
-                <div class="metric-title">Planos + 3D</div>
-                <div class="metric-sub">Presentación clara</div>
-              </div>
-            </div>
-
-            <div class="metric">
-              <div class="metric-icon"><i class="bi bi-house-check"></i></div>
-              <div>
-                <div class="metric-title">Obra ordenada</div>
-                <div class="metric-sub">Seguimiento semanal</div>
-              </div>
-            </div>
-
-            <div class="metric">
-              <div class="metric-icon"><i class="bi bi-palette2"></i></div>
-              <div>
-                <div class="metric-title">Interiorismo</div>
-                <div class="metric-sub">Estética + función</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6">
-          <div class="hero-card hover-float">
-            <div class="hero-card-top">
-              <div class="hero-chip"><i class="bi bi-pin-map"></i> Tucumán</div>
-              <div class="hero-chip"><i class="bi bi-lightning-charge"></i> Respuesta rápida</div>
-              <div class="hero-chip"><i class="bi bi-shield-check"></i> Profesional</div>
-            </div>
-
-            <div class="hero-image-wrap">
-              <img src="img/hero-arquitectura.png" alt="Render arquitectura" class="hero-img" />
-            </div>
-
-            <div class="hero-card-bottom">
-              <small class="text-muted-soft">Tip:</small>
-              <div class="fw-semibold">
-                Todas las imágenes del sitio mantienen proporción sin recortarse.
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="hero-glow"></div>
   </header>
 
-  <!-- SERVICIOS (queda fijo, no hace falta JS) -->
-  <section id="servicios" class="section-pad">
-    <div class="container">
-      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
-        <div>
-          <h2 class="section-title mb-1">Servicios</h2>
-          <p class="section-sub mb-0">Soluciones completas: desde la idea hasta la entrega final.</p>
-        </div>
-        <a class="btn btn-outline-light btn-sm" href="#contacto"><i class="bi bi-chat-dots me-1"></i> Consultar</a>
+  <!-- HERO -->
+  <main id="inicio">
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0">
+        <img src="img/hero-arquitectura.png" alt="Estudio de arquitectura" class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-paper"></div>
       </div>
 
-      <div class="row g-3">
-        <div class="col-md-6 col-lg-3">
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="bi bi-pencil-square"></i></div>
-            <h3 class="h6 fw-bold mt-3">Proyecto Arquitectónico</h3>
-            <p class="text-muted-soft mb-0">Anteproyecto, planos y documentación para construir con claridad.</p>
-          </div>
-        </div>
+      <div class="relative mx-auto max-w-7xl px-4 py-20 lg:px-6 lg:py-28">
+        <div class="max-w-2xl">
+          <p class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-wide text-white ring-1 ring-white/20">
+            <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+            Diseño contemporáneo • Dirección • Ejecución
+          </p>
 
-        <div class="col-md-6 col-lg-3">
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="bi bi-boxes"></i></div>
-            <h3 class="h6 fw-bold mt-3">Reformas & Ampliaciones</h3>
-            <p class="text-muted-soft mb-0">Optimización de espacios, cambios estructurales y mejoras funcionales.</p>
-          </div>
-        </div>
+          <h1 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            Arquitectura que se siente impecable.
+            <span class="block text-white/80">Desde el concepto hasta la obra.</span>
+          </h1>
 
-        <div class="col-md-6 col-lg-3">
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="bi bi-camera-reels"></i></div>
-            <h3 class="h6 fw-bold mt-3">Renders 3D</h3>
-            <p class="text-muted-soft mb-0">Visualización realista para decidir materiales, iluminación y estilo.</p>
-          </div>
-        </div>
+          <p class="mt-5 text-base leading-relaxed text-white/85">
+            Creamos espacios residenciales y comerciales con foco en materialidad, luz y detalles.
+            Documentación técnica clara, control de obra y resultados premium.
+          </p>
 
-        <div class="col-md-6 col-lg-3">
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="bi bi-clipboard-check"></i></div>
-            <h3 class="h6 fw-bold mt-3">Dirección de Obra</h3>
-            <p class="text-muted-soft mb-0">Control de avances, calidad, coordinación y cumplimiento de tiempos.</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href="#contacto" class="inline-flex items-center justify-center rounded-2xl bg-accent px-6 py-3 text-sm font-semibold text-ink shadow-sm hover:opacity-95">
+              Solicitar presupuesto
+            </a>
+            <a href="#proyectos" class="inline-flex items-center justify-center rounded-2xl bg-white/10 px-6 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15">
+              Ver proyectos destacados
+            </a>
+          </div>
+
+          <!-- mini stats -->
+          <div class="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+            <div class="rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
+              <p class="text-xs text-white/70">Enfoque</p>
+              <p class="mt-1 text-sm font-semibold text-white">Minimal • Cálido</p>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
+              <p class="text-xs text-white/70">Entregables</p>
+              <p class="mt-1 text-sm font-semibold text-white">Planos • 3D</p>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
+              <p class="text-xs text-white/70">Gestión</p>
+              <p class="mt-1 text-sm font-semibold text-white">Obra • Timing</p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+        <!-- SERVICIOS -->
+        <section id="servicios" class="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl">
+              <p class="text-xs font-semibold tracking-widest text-black/60">SERVICIOS</p>
+              <h2 class="mt-2 text-3xl font-semibold tracking-tight">Una metodología clara, resultados impecables.</h2>
+              <p class="mt-3 text-sm leading-relaxed text-black/70">
+                Te acompañamos de punta a punta: relevamiento, anteproyecto, documentación, cómputo, dirección y seguimiento.
+              </p>
+            </div>
+    
+            <a href="#contacto" class="inline-flex w-fit items-center justify-center rounded-2xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold shadow-sm hover:bg-black/5">
+              Hablemos de tu proyecto
+            </a>
+          </div>
+    
+          <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold text-black/60">01</p>
+              <h3 class="mt-2 text-lg font-semibold">Diseño & Anteproyecto</h3>
+              <p class="mt-2 text-sm text-black/70">Concepto, distribución, lenguaje material y visualizaciones 3D.</p>
+            </article>
+    
+            <article class="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold text-black/60">02</p>
+              <h3 class="mt-2 text-lg font-semibold">Documentación Técnica</h3>
+              <p class="mt-2 text-sm text-black/70">Planos ejecutivos, detalles, cómputos y especificaciones.</p>
+            </article>
+    
+            <article class="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold text-black/60">03</p>
+              <h3 class="mt-2 text-lg font-semibold">Dirección de Obra</h3>
+              <p class="mt-2 text-sm text-black/70">Control de calidad, coordinación de gremios y tiempos.</p>
+            </article>
+    
+            <article class="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold text-black/60">04</p>
+              <h3 class="mt-2 text-lg font-semibold">Interiorismo</h3>
+              <p class="mt-2 text-sm text-black/70">Iluminación, mobiliario, paleta y terminaciones de alto nivel.</p>
+            </article>
+          </div>
+        </section>
+    
+        <!-- PROYECTOS -->
+        <section id="proyectos" class="bg-white">
+          <div class="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+            <div class="max-w-2xl">
+              <p class="text-xs font-semibold tracking-widest text-black/60">PORTFOLIO</p>
+              <h2 class="mt-2 text-3xl font-semibold tracking-tight">Proyectos destacados</h2>
+              <p class="mt-3 text-sm leading-relaxed text-black/70">
+                Selección de trabajos recientes. Podés abrir cada proyecto para ver el enfoque, materiales y alcance.
+              </p>
+            </div>
+    
+            <div class="mt-10 grid gap-6 lg:grid-cols-3">
+              <!-- Proyecto 1 -->
+              <article class="group overflow-hidden rounded-3xl border border-black/10 bg-paper shadow-sm">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <img src="img/proyecto-1.png" alt="Proyecto 1" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-lg font-semibold">Residencia Patio-Luz</h3>
+                    <span class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-black/70">Residencial</span>
+                  </div>
+                  <p class="mt-2 text-sm text-black/70">
+                    Volúmenes simples, materialidad cálida y control preciso de la iluminación natural.
+                  </p>
+                  <button class="mt-5 inline-flex items-center justify-center rounded-2xl bg-ink px-4 py-2 text-sm font-semibold text-paper hover:opacity-90"
+                          data-open-project="1">
+                    Ver detalles
+                  </button>
+                </div>
+              </article>
+    
+              <!-- Proyecto 2 -->
+              <article class="group overflow-hidden rounded-3xl border border-black/10 bg-paper shadow-sm">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <img src="img/proyecto-2.png" alt="Proyecto 2" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-lg font-semibold">Local Comercial NEO</h3>
+                    <span class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-black/70">Comercial</span>
+                  </div>
+                  <p class="mt-2 text-sm text-black/70">
+                    Fachada limpia, señalética integrada y recorrido optimizado para experiencia de compra.
+                  </p>
+                  <button class="mt-5 inline-flex items-center justify-center rounded-2xl bg-ink px-4 py-2 text-sm font-semibold text-paper hover:opacity-90"
+                          data-open-project="2">
+                    Ver detalles
+                  </button>
+                </div>
+              </article>
+    
+              <!-- Proyecto 3 -->
+              <article class="group overflow-hidden rounded-3xl border border-black/10 bg-paper shadow-sm">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <img src="img/proyecto-3.png" alt="Proyecto 3" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-lg font-semibold">Remodelación Ático</h3>
+                    <span class="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-black/70">Reforma</span>
+                  </div>
+                  <p class="mt-2 text-sm text-black/70">
+                    Reconfiguración funcional, aislamiento y terminaciones premium en superficies.
+                  </p>
+                  <button class="mt-5 inline-flex items-center justify-center rounded-2xl bg-ink px-4 py-2 text-sm font-semibold text-paper hover:opacity-90"
+                          data-open-project="3">
+                    Ver detalles
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
-      <div class="cta-strip mt-4 reveal">
-        <div class="d-flex align-items-center gap-3 flex-wrap justify-content-between">
-          <div class="d-flex align-items-center gap-3">
-            <div class="cta-badge"><i class="bi bi-award"></i></div>
-            <div>
-              <div class="fw-bold">¿Tenés una idea?</div>
-              <div class="text-muted-soft">Te la bajamos a planos y presupuesto.</div>
+            <!-- ARTÍCULOS -->
+    <section id="articulos" class="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold tracking-widest text-black/60">ARTÍCULOS</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight">Materiales, detalles y decisiones inteligentes.</h2>
+          <p class="mt-3 text-sm leading-relaxed text-black/70">
+            Consejos prácticos y criterios de diseño para que tu obra se sienta sólida y elegante.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+          <div class="aspect-[4/3] overflow-hidden bg-black/5">
+            <img src="img/articulo-deck.png" alt="Deck y exteriores" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-semibold">Deck exterior: durabilidad real</h3>
+            <p class="mt-2 text-sm text-black/70">Qué mirar en madera, WPC y terminaciones para que dure.</p>
+            <button class="mt-4 text-sm font-semibold text-ink underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    data-open-article="deck">
+              Leer
+            </button>
+          </div>
+        </article>
+
+        <article class="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+          <div class="aspect-[4/3] overflow-hidden bg-black/5">
+            <img src="img/articulo-lampara.png" alt="Iluminación" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-semibold">Iluminación: capas y escenas</h3>
+            <p class="mt-2 text-sm text-black/70">Ambiente, tarea y acento: cómo lograr equilibrio.</p>
+            <button class="mt-4 text-sm font-semibold text-ink underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    data-open-article="lampara">
+              Leer
+            </button>
+          </div>
+        </article>
+
+        <article class="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+          <div class="aspect-[4/3] overflow-hidden bg-black/5">
+            <img src="img/articulo-piso.png" alt="Pisos" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-semibold">Pisos: estética + mantenimiento</h3>
+            <p class="mt-2 text-sm text-black/70">Porcelanato, madera, microcemento: pros reales.</p>
+            <button class="mt-4 text-sm font-semibold text-ink underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    data-open-article="piso">
+              Leer
+            </button>
+          </div>
+        </article>
+
+        <article class="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm">
+          <div class="aspect-[4/3] overflow-hidden bg-black/5">
+            <img src="img/articulo-revestimiento.png" alt="Revestimientos" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-semibold">Revestimientos: textura y luz</h3>
+            <p class="mt-2 text-sm text-black/70">Cómo elegir para que el espacio gane profundidad.</p>
+            <button class="mt-4 text-sm font-semibold text-ink underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    data-open-article="revestimiento">
+              Leer
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="bg-ink text-paper">
+      <div class="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-white/60">CONTACTO</p>
+            <h2 class="mt-2 text-3xl font-semibold tracking-tight">Contanos qué querés construir.</h2>
+            <p class="mt-3 text-sm leading-relaxed text-white/80">
+              Te respondemos con un plan claro de alcance, tiempos y próximos pasos.
+            </p>
+
+            <div class="mt-8 grid gap-4">
+              <div class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
+                <p class="text-xs font-semibold text-white/60">Ubicación</p>
+                <p class="mt-1 text-sm font-semibold">Tu ciudad • Argentina</p>
+              </div>
+
+              <div class="rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
+                <p class="text-xs font-semibold text-white/60">Horario</p>
+                <p class="mt-1 text-sm font-semibold">Lun a Vie — 09:00 a 18:00</p>
+              </div>
+            </div>
+
+            <div class="mt-8 overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+              <img src="img/mapa-ilustrativo.png" alt="Mapa ilustrativo" class="h-full w-full object-cover" />
             </div>
           </div>
 
-          <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">
-            <i class="bi bi-calculator me-2"></i> Cotizar ahora
+          <div class="rounded-3xl bg-paper p-6 text-ink shadow-sm">
+            <h3 class="text-xl font-semibold">Formulario de consulta</h3>
+            <p class="mt-2 text-sm text-black/70">Completá y te contactamos. (Luego lo conectamos con JS.)</p>
+
+            <form id="contactForm" class="mt-6 grid gap-4">
+              <div>
+                <label class="text-sm font-semibold" for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text"
+                  class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="Tu nombre" required />
+              </div>
+
+              <div>
+                <label class="text-sm font-semibold" for="email">Email</label>
+                <input id="email" name="email" type="email"
+                  class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="tu@email.com" required />
+              </div>
+
+              <div>
+                <label class="text-sm font-semibold" for="tipo">Tipo de proyecto</label>
+                <select id="tipo" name="tipo"
+                  class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-accent">
+                  <option value="residencial">Residencial</option>
+                  <option value="comercial">Comercial</option>
+                  <option value="reforma">Reforma</option>
+                  <option value="interiorismo">Interiorismo</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-sm font-semibold" for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5"
+                  class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="Contanos ubicación, m2 aproximados, tiempos, presupuesto orientativo..." required></textarea>
+              </div>
+
+              <button type="submit"
+                class="mt-2 inline-flex items-center justify-center rounded-2xl bg-ink px-6 py-3 text-sm font-semibold text-paper hover:opacity-90">
+                Enviar consulta
+              </button>
+
+              <p id="formMsg" class="hidden text-sm font-semibold"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-black/10 bg-paper">
+    <div class="mx-auto max-w-7xl px-4 py-10 lg:px-6">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="text-sm text-black/70">
+          <p class="font-semibold text-black">Estudio Arq.</p>
+          <p class="mt-1">Arquitectura & Diseño — Documentación, dirección y obra.</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#inicio" class="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5">Arriba</a>
+          <a href="#contacto" class="rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-paper shadow-sm hover:opacity-90">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL (para Proyectos / Artículos) -->
+  <div id="modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/60" data-close-modal></div>
+
+    <div class="relative mx-auto mt-10 w-[92%] max-w-3xl overflow-hidden rounded-3xl bg-paper shadow-xl">
+      <div class="flex items-center justify-between border-b border-black/10 px-6 py-4">
+        <h4 id="modalTitle" class="text-lg font-semibold">Título</h4>
+        <button class="rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-semibold hover:bg-black/5" data-close-modal>
+          Cerrar
+        </button>
+      </div>
+
+      <div class="p-6">
+        <img id="modalImage" src="img/proyecto-1.png" alt="Detalle" class="mb-5 aspect-[16/9] w-full rounded-2xl object-cover" />
+        <p id="modalText" class="text-sm leading-relaxed text-black/75">
+          Contenido del modal...
+        </p>
+
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <a href="#contacto" class="inline-flex items-center justify-center rounded-2xl bg-ink px-5 py-3 text-sm font-semibold text-paper hover:opacity-90">
+            Quiero algo así
+          </a>
+          <button class="inline-flex items-center justify-center rounded-2xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:bg-black/5" data-close-modal>
+            Volver
           </button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ARTÍCULOS (JS renderiza las cards) -->
-  <section id="articulos" class="section-pad">
-    <div class="container">
-      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
-        <div>
-          <h2 class="section-title mb-1">Artículos</h2>
-          <p class="section-sub mb-0">Selección de soluciones y materiales.</p>
-        </div>
-
-        <div class="d-flex gap-2" id="filtersArticulos">
-          <button class="btn btn-outline-light btn-sm" data-filter="all"><i class="bi bi-grid me-1"></i> Todos</button>
-          <button class="btn btn-outline-light btn-sm" data-filter="interior"><i class="bi bi-lamp me-1"></i> Interior</button>
-          <button class="btn btn-outline-light btn-sm" data-filter="exterior"><i class="bi bi-tree me-1"></i> Exterior</button>
-        </div>
-      </div>
-
-      <div class="row g-3" id="gridArticulos"><!-- JS inserta aquí --></div>
-    </div>
-  </section>
-
-  <!-- PROYECTOS (JS renderiza las cards) -->
-  <section id="proyectos" class="section-pad">
-    <div class="container">
-      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
-        <div>
-          <h2 class="section-title mb-1">Proyectos</h2>
-          <p class="section-sub mb-0">Algunos estilos de trabajo: vivienda, reforma e interiores.</p>
-        </div>
-        <a class="btn btn-outline-light btn-sm" href="#contacto"><i class="bi bi-send me-1"></i> Quiero mi proyecto</a>
-      </div>
-
-      <div class="row g-3" id="gridProyectos"><!-- JS inserta aquí --></div>
-
-      <!-- pricing queda fijo -->
-      <div class="pricing-strip mt-4 reveal">
-        <div class="row g-3 align-items-stretch">
-          <div class="col-lg-4">
-            <div class="pricing-card">
-              <div class="pricing-top">
-                <div class="pricing-name">Básico</div>
-                <div class="pricing-price">Anteproyecto</div>
-              </div>
-              <ul class="pricing-list">
-                <li><i class="bi bi-check2"></i> Idea + layout inicial</li>
-                <li><i class="bi bi-check2"></i> Ajustes principales</li>
-                <li><i class="bi bi-check2"></i> Entrega rápida</li>
-              </ul>
-              <button class="btn btn-outline-light w-100" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">Consultar</button>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="pricing-card pricing-featured">
-              <div class="pricing-top">
-                <div class="pricing-name">Pro</div>
-                <div class="pricing-price">Planos + 3D</div>
-              </div>
-              <ul class="pricing-list">
-                <li><i class="bi bi-check2"></i> Planimetría completa</li>
-                <li><i class="bi bi-check2"></i> Renders 3D</li>
-                <li><i class="bi bi-check2"></i> Materiales sugeridos</li>
-              </ul>
-              <button class="btn btn-brand w-100" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">Pedir Pro</button>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="pricing-card">
-              <div class="pricing-top">
-                <div class="pricing-name">Premium</div>
-                <div class="pricing-price">Dirección de obra</div>
-              </div>
-              <ul class="pricing-list">
-                <li><i class="bi bi-check2"></i> Seguimiento semanal</li>
-                <li><i class="bi bi-check2"></i> Control de calidad</li>
-                <li><i class="bi bi-check2"></i> Coordinación completa</li>
-              </ul>
-              <button class="btn btn-outline-light w-100" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">Consultar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- (PARTE 2/3) contacto + modales + footer + scripts -->
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="section-pad">
-      <div class="container">
-  
-        <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
-          <div>
-            <h2 class="section-title mb-1">Contacto</h2>
-            <p class="section-sub mb-0">Contanos qué necesitás y te respondemos por WhatsApp.</p>
-          </div>
-  
-          <div class="d-flex gap-2">
-            <span class="badge contact-badge">
-              <i class="bi bi-clock me-1"></i> Lun a Sáb • 09:00–20:00
-            </span>
-            <span class="badge contact-badge">
-              <i class="bi bi-geo-alt me-1"></i> Tucumán
-            </span>
-          </div>
-        </div>
-  
-        <div class="row g-3 align-items-stretch">
-          <!-- FORM -->
-          <div class="col-lg-7">
-            <div class="panel-card reveal">
-              <h3 class="h5 fw-bold mb-1">Pedí tu presupuesto</h3>
-              <p class="text-muted-soft mb-3">Completá estos datos (o tocá WhatsApp directo).</p>
-  
-              <form id="formContacto" class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label">Nombre</label>
-                  <input id="cNombre" type="text" class="form-control form-control-lg" placeholder="Tu nombre" required>
-                </div>
-  
-                <div class="col-md-6">
-                  <label class="form-label">Teléfono</label>
-                  <input id="cTelefono" type="tel" class="form-control form-control-lg" placeholder="+54 381 ..." required>
-                </div>
-  
-                <div class="col-md-6">
-                  <label class="form-label">Tipo de servicio</label>
-                  <select id="cServicio" class="form-select form-select-lg">
-                    <option value="Proyecto arquitectónico">Proyecto arquitectónico</option>
-                    <option value="Reforma / ampliación">Reforma / ampliación</option>
-                    <option value="Renders 3D">Renders 3D</option>
-                    <option value="Dirección de obra">Dirección de obra</option>
-                    <option value="Consulta general">Consulta general</option>
-                  </select>
-                </div>
-  
-                <div class="col-md-6">
-                  <label class="form-label">Zona</label>
-                  <input id="cZona" type="text" class="form-control form-control-lg" placeholder="Ej: Yerba Buena, Tafí..." />
-                </div>
-  
-                <div class="col-12">
-                  <label class="form-label">Mensaje</label>
-                  <textarea id="cMensaje" class="form-control form-control-lg" rows="4" placeholder="Contanos medidas, idea, tiempos, referencias..." required></textarea>
-                </div>
-  
-                <div class="col-12 d-flex flex-wrap gap-2 mt-2">
-                  <button type="submit" class="btn btn-brand btn-lg">
-                    <i class="bi bi-whatsapp me-2"></i> Enviar por WhatsApp
-                  </button>
-  
-                  <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">
-                    <i class="bi bi-calculator me-2"></i> Ver opciones
-                  </button>
-                </div>
-  
-                <div class="col-12">
-                  <small class="text-muted-soft">
-                    *No enviamos emails. Esto abre WhatsApp con el mensaje armado.
-                  </small>
-                </div>
-              </form>
-            </div>
-          </div>
-  
-          <!-- INFO / MAPA -->
-          <div class="col-lg-5">
-            <div class="panel-card reveal h-100">
-              <h3 class="h5 fw-bold mb-2">Datos rápidos</h3>
-  
-              <div class="info-list">
-                <div class="info-item">
-                  <i class="bi bi-telephone"></i>
-                  <div>
-                    <div class="fw-semibold">Teléfono</div>
-                    <div class="text-muted-soft">+54 381 000 0000</div>
-                  </div>
-                </div>
-  
-                <div class="info-item">
-                  <i class="bi bi-envelope"></i>
-                  <div>
-                    <div class="fw-semibold">Email</div>
-                    <div class="text-muted-soft">contacto@tuestudio.com</div>
-                  </div>
-                </div>
-  
-                <div class="info-item">
-                  <i class="bi bi-geo-alt"></i>
-                  <div>
-                    <div class="fw-semibold">Zona</div>
-                    <div class="text-muted-soft">Tucumán • Atención a domicilio</div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="map-illu mt-3">
-                <img src="img/mapa-ilustrativo.png" alt="Mapa ilustrativo" class="map-img">
-                <div class="map-overlay">
-                  <div class="fw-bold">Visitas + medición</div>
-                  <div class="text-muted-soft small">Coordinación por WhatsApp</div>
-                </div>
-              </div>
-  
-              <div class="mt-3 d-grid">
-                <a id="btnContactWA" class="btn btn-whatsapp btn-lg" href="#" target="_blank" rel="noopener">
-                  <i class="bi bi-whatsapp me-2"></i> Hablar ahora
-                </a>
-              </div>
-            </div>
-          </div>
-        </div><!-- /row -->
-      </div>
-    </section>
-  
-    <!-- MODAL: ARTÍCULO -->
-    <div class="modal fade" id="modalArticulo" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content modal-dark">
-          <div class="modal-header border-0">
-            <h5 class="modal-title fw-bold" id="mArtTitle">Artículo</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-  
-          <div class="modal-body">
-            <div class="row g-3 align-items-stretch">
-              <div class="col-md-6">
-                <div class="modal-media">
-                  <img id="mArtImg" src="img/articulo-lampara.png" alt="Artículo" class="modal-img">
-                </div>
-              </div>
-  
-              <div class="col-md-6 d-flex flex-column">
-                <div class="d-flex align-items-center justify-content-between gap-2">
-                  <span class="badge modal-badge" id="mArtCat">Categoría</span>
-                  <span class="badge modal-badge"><i class="bi bi-shield-check me-1"></i> Calidad</span>
-                </div>
-  
-                <p class="text-muted-soft mt-3" id="mArtDesc">Descripción del artículo...</p>
-  
-                <div class="mt-auto d-flex flex-wrap gap-2">
-                  <a class="btn btn-whatsapp btn-lg" id="btnArtWA" href="#" target="_blank" rel="noopener">
-                    <i class="bi bi-whatsapp me-2"></i> Consultar por WhatsApp
-                  </a>
-  
-                  <button type="button" class="btn btn-outline-light btn-lg" data-bs-dismiss="modal">
-                    Cerrar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-      </div>
-    </div>
-  
-    <!-- MODAL: PROYECTO -->
-    <div class="modal fade" id="modalProyecto" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content modal-dark">
-          <div class="modal-header border-0">
-            <h5 class="modal-title fw-bold" id="mProTitle">Proyecto</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-  
-          <div class="modal-body">
-            <div class="row g-3 align-items-stretch">
-              <div class="col-md-6">
-                <div class="modal-media">
-                  <img id="mProImg" src="img/proyecto-1.png" alt="Proyecto" class="modal-img">
-                </div>
-              </div>
-  
-              <div class="col-md-6 d-flex flex-column">
-                <p class="text-muted-soft" id="mProDesc">Descripción del proyecto...</p>
-  
-                <div class="mini-specs mt-2">
-                  <div class="mini-spec"><i class="bi bi-rulers"></i> Medición</div>
-                  <div class="mini-spec"><i class="bi bi-bricks"></i> Materiales</div>
-                  <div class="mini-spec"><i class="bi bi-lightbulb"></i> Iluminación</div>
-                </div>
-  
-                <div class="mt-auto d-flex flex-wrap gap-2">
-                  <button class="btn btn-brand btn-lg" data-bs-toggle="modal" data-bs-target="#modalPresupuesto">
-                    <i class="bi bi-calculator me-2"></i> Quiero cotizar
-                  </button>
-  
-                  <button type="button" class="btn btn-outline-light btn-lg" data-bs-dismiss="modal">
-                    Cerrar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-      </div>
-    </div>
-  
-    <!-- MODAL: PRESUPUESTO -->
-    <div class="modal fade" id="modalPresupuesto" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal-dark">
-          <div class="modal-header border-0">
-            <h5 class="modal-title fw-bold">Opciones de trabajo</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-  
-          <div class="modal-body">
-            <p class="text-muted-soft mb-3">Elegí una opción y te armamos el mensaje listo para WhatsApp.</p>
-  
-            <div class="d-grid gap-2">
-              <button class="btn btn-outline-light option-btn" data-pack="Básico (Anteproyecto)">
-                <i class="bi bi-file-earmark-text me-2"></i> Básico — Anteproyecto
-              </button>
-  
-              <button class="btn btn-brand option-btn" data-pack="Pro (Planos + 3D)">
-                <i class="bi bi-box me-2"></i> Pro — Planos + 3D
-              </button>
-  
-              <button class="btn btn-outline-light option-btn" data-pack="Premium (Dirección de obra)">
-                <i class="bi bi-clipboard-check me-2"></i> Premium — Dirección de obra
-              </button>
-            </div>
-  
-            <div class="mt-3">
-              <label class="form-label">Detalle breve (opcional)</label>
-              <textarea id="packDetalle" class="form-control form-control-lg" rows="3" placeholder="Ej: casa 2 hab, 80m2, reforma cocina..."></textarea>
-            </div>
-  
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              <a class="btn btn-whatsapp btn-lg flex-grow-1" id="btnPackWA" href="#" target="_blank" rel="noopener">
-                <i class="bi bi-whatsapp me-2"></i> Enviar por WhatsApp
-              </a>
-  
-              <button type="button" class="btn btn-outline-light btn-lg" data-bs-dismiss="modal">
-                Cerrar
-              </button>
-            </div>
-  
-            <small class="text-muted-soft d-block mt-2">
-              *El número y mensaje se configuran en JS.
-            </small>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a id="waFloat" href="#" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-      <i class="bi bi-whatsapp"></i>
-    </a>
-  
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row gy-3 align-items-center">
-          <div class="col-md-6">
-            <div class="d-flex align-items-center gap-2 fw-bold">
-              <span class="brand-badge"><i class="bi bi-buildings"></i></span>
-              <span>Estudio <span class="text-brand">ARQ</span></span>
-            </div>
-            <div class="text-muted-soft small mt-2">
-              Proyectos • Reformas • Interiores • Dirección de obra
-            </div>
-          </div>
-  
-          <div class="col-md-6 text-md-end">
-            <div class="d-flex flex-wrap gap-2 justify-content-md-end">
-              <a class="footer-link" href="#servicios">Servicios</a>
-              <a class="footer-link" href="#articulos">Artículos</a>
-              <a class="footer-link" href="#proyectos">Proyectos</a>
-              <a class="footer-link" href="#contacto">Contacto</a>
-            </div>
-            <div class="text-muted-soft small mt-2">
-              © <span id="year"></span> — Todos los derechos reservados.
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-    <!-- JS por módulos (archivos separados) -->
-    <script src="js/data.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/app.js"></script>
-  </body>
-  </html>
+  <!-- JS -->
+  <script src="index.js"></script>
+</body>
+</html>
