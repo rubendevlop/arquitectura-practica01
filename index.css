@@ -57,6 +57,9 @@
     background: rgba(255,255,255,.72); /* antes oscuro */
     border-bottom: 1px solid var(--border);
   }
+  .text-studio{
+    color: black;
+  }
   
   .brand-badge{
     width:34px; height:34px;
@@ -141,6 +144,7 @@
     filter: blur(18px);
     pointer-events:none;
   }
+  .bi-buildings{color: black;}
   
   .hero-card{
     border-radius: var(--radius);
